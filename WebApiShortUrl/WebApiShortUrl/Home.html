@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+
+
+    <script src="jquery-3.3.1.min.js"></script>
+
+
+</head>
+<body>
+    <table>
+        <tbody>
+            <tr>
+                <td>Url</td>
+                <td><input id="txtUrl" type="text" /></td>
+            </tr>
+
+            <tr>
+                <td>Result</td>
+                <td><input id="txtResult" type="text" /></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input id="btnShow" value="Show" type="button" /></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <script type="text/javascript">
+
+        $("#btnShow").click(function () {
+
+            var urlId = $("#txtUrl").val();
+
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:15987/api/UrlGeneration/GetUrl',
+                data: { "url": urlId },
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                cache: true,
+                success: function (data) {
+
+                    $("#txtResult").val(data);
+                    
+
+                },
+                error: function () { console.log('error'); }
+            });
+        })
+
+
+    </script>
+
+
+    
+
+
+</body>
+</html>
